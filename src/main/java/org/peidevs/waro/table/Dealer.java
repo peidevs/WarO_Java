@@ -5,8 +5,22 @@ import java.util.stream.*;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.groupingBy;
 
+import org.peidevs.waro.domain.*;
+
 public class Dealer {
-    public Map<Integer, List<Integer>> deal(int numCards, int numPlayers) {
+    public Table deal(int numCards, List<Player> players) {
+        Map<Integer, List<Integer>> map = deal(numCards, players.size());
+
+        final int KITTY_INDEX = 0;
+        List<Integer> kitty = map.get(KITTY_INDEX);
+
+        IntStream.range(0,players.size()).forEach(i -> players.get(i).setHand(map.get(i+1)));
+
+        Table table = new Table(players, kitty.stream().mapToInt(i->i));
+        return table;
+    }
+    
+    protected Map<Integer, List<Integer>> deal(int numCards, int numPlayers) {
         int numGroups = numPlayers + 1; // include kitty 
         assertEvenNumberOfCards(numCards, numGroups);
         

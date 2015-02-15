@@ -7,7 +7,30 @@ import org.junit.*;
 import java.util.stream.*;
 import static java.util.stream.Collectors.toList;
 
+import org.peidevs.waro.domain.*;
+
 public class DealerTest {
+
+    @Test
+    public void testDeal_BasicTable() {
+        Dealer dealer = new Dealer();
+        int numCards = 40;
+        int maxCard = numCards;
+        List<Player> players = new ArrayList<>();
+        players.add(new Player("a", null, maxCard));
+        players.add(new Player("b", null, maxCard));
+        players.add(new Player("c", null, maxCard));
+        players.add(new Player("d", null, maxCard));
+
+        // test
+        Table table = dealer.deal(numCards, players);
+        
+        assertEquals(8, table.getKitty().count());
+        assertEquals(8, table.getPlayers().get(0).getNumCardsInHand());
+        assertEquals(8, table.getPlayers().get(1).getNumCardsInHand());
+        assertEquals(8, table.getPlayers().get(2).getNumCardsInHand());
+        assertEquals(8, table.getPlayers().get(3).getNumCardsInHand());
+    }
 
     @Test
     public void testDeal_Basic() {
