@@ -17,6 +17,7 @@ public class Player {
         this.maxCard = maxCard;
     }
 
+    // TODO: fix mutable state
     public void setHand(List<Integer> hand) {
         this.hand = hand;
     }
@@ -28,19 +29,20 @@ public class Player {
     public String toString() {
         return name;
     }
+
+    public Bid getBid(int prizeCard) {
+        int offer = strategy.selectCard(prizeCard, hand.stream().mapToInt(i->i), maxCard);
+        // TODO: ensure that offer is contained in hand ! (no cheaters)
+        
+        Bid bid = new Bid(offer, this);        
+
+        // TODO: fix mutable state
+        hand.remove((Object) bid.getOffer());
+        
+        return bid;
+    }
     
     /*        
-    Bid getBid(int prizeCard) {
-        def unmodifiableHand = Collections.unmodifiableList(hand)
-        def offer = strategy.selectCard(prizeCard, unmodifiableHand, maxCard)
-
-        def bid = new Bid(offer, this)        
-        assert hand.contains(bid.offer)
-
-        hand.remove(bid.offer as Object)
-        
-        return bid
-    }
     
     void clear() {
         hand = []
