@@ -25,6 +25,10 @@ public class Player {
     public int getNumCardsInHand() {
         return hand.size();
     }
+
+    public String getName() {
+        return name;
+    }    
     
     public String toString() {
         return name;
@@ -37,7 +41,7 @@ public class Player {
         Bid bid = new Bid(offer, this);        
 
         // TODO: fix mutable state
-        hand.remove((Object) bid.getOffer());
+        hand.remove((Object) offer);
         
         return bid;
     }

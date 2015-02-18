@@ -8,6 +8,13 @@ import static java.util.stream.Collectors.groupingBy;
 import org.peidevs.waro.domain.*;
 
 public class Dealer {
+    
+    public void play(Table table) {
+        List<Player> players = table.getPlayers();
+        IntStream kitty = table.getKitty();
+        kitty.forEach(prizeCard -> playRound(prizeCard, players));
+    }
+    
     public Table deal(int numCards, List<Player> players) {
         Map<Integer, List<Integer>> map = deal(numCards, players.size());
 
@@ -18,6 +25,21 @@ public class Dealer {
 
         Table table = new Table(players, kitty.stream().mapToInt(i->i));
         return table;
+    }
+    
+    // ------- internal 
+    
+    protected Player playRound(int prizeCard, List<Player> players) {
+        Bid winningBid = findWinningBid(prizeCard, players);
+        Player winner = winningBid.getBidder();
+        return winner;
+    }
+
+    protected Bid findWinningBid(int prizeCard, List<Player> players) {
+        BidComparator comparator = new BidComparator();
+        Bid winningBid = players.stream().map(p -> p.getBid(prizeCard)).max(comparator).get();
+        
+        return winningBid;
     }
     
     protected Map<Integer, List<Integer>> deal(int numCards, int numPlayers) {
