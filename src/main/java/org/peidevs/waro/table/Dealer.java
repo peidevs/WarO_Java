@@ -9,6 +9,7 @@ import org.peidevs.waro.domain.*;
 
 public class Dealer {
     
+    /*
     public void play(Table table) {
         List<Player> players = table.getPlayers();
         IntStream kitty = table.getKitty();
@@ -26,9 +27,11 @@ public class Dealer {
         Table table = new Table(players, kitty.stream().mapToInt(i->i));
         return table;
     }
+    */
     
     // ------- internal 
     
+    /*
     protected Player playRound(int prizeCard, List<Player> players) {
         Bid winningBid = findWinningBid(prizeCard, players);
         Player winner = winningBid.getBidder();
@@ -41,6 +44,7 @@ public class Dealer {
         
         return winningBid;
     }
+    */
     
     protected Map<Integer, List<Integer>> deal(int numCards, int numPlayers) {
         int numGroups = numPlayers + 1; // include kitty 

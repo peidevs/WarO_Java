@@ -12,6 +12,7 @@ import org.peidevs.waro.strategy.*;
 
 public class DealerTest {
 
+/*
     @Test
     public void testFindWinningBid_Basic() {
         Dealer dealer = new Dealer();
@@ -84,6 +85,7 @@ public class DealerTest {
         // test
         Map<Integer, List<Integer>> map = dealer.deal(numCards, numPlayers);        
     }
+*/
 
     @Test
     public void testBuildShuffledDeck() {

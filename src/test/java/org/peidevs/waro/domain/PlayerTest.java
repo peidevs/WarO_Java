@@ -1,6 +1,7 @@
 package org.peidevs.waro.domain;
 
 import org.peidevs.waro.strategy.*;
+import org.peidevs.waro.table.Hand;
 
 import static org.junit.Assert.*;
 import java.util.*;
@@ -16,14 +17,15 @@ public class PlayerTest {
         Strategy strategy = new MaxCard();
         int maxCard = 40;
         int prizeCard = 10;
-        Player player = new Player("Randy", strategy, maxCard);
-        List<Integer> hand = IntStream.range(1,5).boxed().collect(toList());
-        player.setHand(hand);
+        List<Integer> cards = IntStream.range(1,5).boxed().collect(toList());
+        Hand hand = new Hand(cards);
+        Player player = new Player("Randy", strategy, maxCard, hand);
 
         // test
         Bid bid = player.getBid(prizeCard);
         
         assertEquals(player, bid.getBidder());
         assertEquals(4, bid.getOffer());
+        assertEquals(prizeCard, bid.getPrizeCard());
    }
 }
