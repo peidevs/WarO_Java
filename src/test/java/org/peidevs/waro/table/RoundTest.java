@@ -14,7 +14,6 @@ public class RoundTest {
 
     @Test
     public void testPlay_Basic() {
-        Round round = new Round();
         int numCards = 12;
         int maxCard = numCards;
         Strategy strategy = new MaxCard();
@@ -33,8 +32,10 @@ public class RoundTest {
         players.add(p2);
         players.add(p3);
         
+        int prizeCard = 10;
+        
         // test
-        List<Player> newPlayers = round.play(players, 10);
+        List<Player> newPlayers = new Round(prizeCard).apply(players);
         
         assertEquals(3, newPlayers.size());
         assertEquals(2, newPlayers.get(0).getNumCardsInHand());

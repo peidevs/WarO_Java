@@ -4,10 +4,22 @@ import org.peidevs.waro.domain.*;
 
 import java.util.*;
 import java.util.stream.*;
+import java.util.function.*;
 import static java.util.stream.Collectors.toList;
 
-public class Round {
-    public List<Player> play(List<Player> players, int prizeCard) {
+public class Round implements UnaryOperator<List<Player>> {
+    private final int prizeCard;
+    
+    public Round(int prizeCard) {
+        this.prizeCard = prizeCard;
+    }
+    
+    protected Round() {
+        this.prizeCard = -1;
+    }
+    
+    @Override
+    public List<Player> apply(List<Player> players) {
         List<Player> nextRoundPlayers = new ArrayList<>();
         
         List<Bid> bids = getAllBids(players, prizeCard);
@@ -15,7 +27,6 @@ public class Round {
         Bid winningBid = findWinningBid(players, prizeCard);
         
         Player newWinner = winningBid.getBidder().wins(winningBid);
-        System.out.println("TRACER winner is : " + newWinner.getName() + " # is " + newWinner.getPlayerStats().getNumRoundsWon());
         nextRoundPlayers.add(newWinner);
         
         String winner = winningBid.getBidder().getName();
