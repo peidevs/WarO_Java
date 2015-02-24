@@ -1,6 +1,7 @@
-package org.peidevs.waro.table;
+package org.peidevs.waro.function;
 
 import org.peidevs.waro.domain.*;
+import org.peidevs.waro.table.*;
 
 import java.util.*;
 import java.util.stream.*;

@@ -1,7 +1,8 @@
-package org.peidevs.waro.table;
+package org.peidevs.waro.function;
 
 import org.peidevs.waro.domain.*;
 import org.peidevs.waro.strategy.*;
+import org.peidevs.waro.table.*;
 
 import static org.junit.Assert.*;
 import java.util.*;
