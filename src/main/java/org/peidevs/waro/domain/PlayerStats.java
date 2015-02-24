@@ -17,6 +17,10 @@ public class PlayerStats {
         this.numRoundsWon = numRoundsWon;
     }
     
+    public String toString() {
+        return " total: " + total + " # games: " + numGamesWon + " # rounds: " + numRoundsWon;
+    }
+    
     public int getTotal() { return total; }
     public int getNumRoundsWon() { return numRoundsWon; }
         

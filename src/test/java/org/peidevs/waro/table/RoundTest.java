@@ -13,7 +13,7 @@ import static java.util.stream.Collectors.toList;
 public class RoundTest {
 
     @Test
-    public void testPlay_Basic() {
+    public void testApply_Basic() {
         int numCards = 12;
         int maxCard = numCards;
         Strategy strategy = new MaxCard();

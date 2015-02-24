@@ -8,15 +8,11 @@ import static java.util.stream.Collectors.groupingBy;
 import org.peidevs.waro.domain.*;
 
 public class Dealer {
-    
-    /*
-    public void play(Table table) {
-        List<Player> players = table.getPlayers();
-        IntStream kitty = table.getKitty();
-        kitty.forEach(prizeCard -> playRound(prizeCard, players));
-    }
-    
+
     public Table deal(int numCards, List<Player> players) {
+        return null;
+        // players = players.stream().map(p -> p.reset(hand))
+        /*
         Map<Integer, List<Integer>> map = deal(numCards, players.size());
 
         final int KITTY_INDEX = 0;
@@ -26,7 +22,16 @@ public class Dealer {
 
         Table table = new Table(players, kitty.stream().mapToInt(i->i));
         return table;
+        */
     }
+    
+    /*
+    public void play(Table table) {
+        List<Player> players = table.getPlayers();
+        IntStream kitty = table.getKitty();
+        kitty.forEach(prizeCard -> playRound(prizeCard, players));
+    }
+    
     */
     
     // ------- internal 

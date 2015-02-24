@@ -32,6 +32,10 @@ public class Player {
         return playerStats;
     }
     
+    public String toString() {
+        return "name: " + name + " stats: " + playerStats.toString();
+    }
+    
     public String getName() {
         return name;
     }    
@@ -45,7 +49,7 @@ public class Player {
 
     public Player loses(Bid bid) {
         Hand newHand = hand.select(bid.getOffer());
-        Player newPlayer = new Player(name, strategy, maxCard, newHand);
+        Player newPlayer = new Player(name, strategy, maxCard, newHand, this.playerStats);
         return newPlayer;
     }
     
@@ -62,13 +66,9 @@ public class Player {
         return hand.cardsAsIntStream().boxed().count();
     }
 
-    // --------- internal
-    
-    /*        
-    
-    void clear() {
-        hand = []
-        playerStats.clear()
+    public Player reset(Hand newHand) {
+        PlayerStats newPlayerStats = new PlayerStats();
+        Player newPlayer = new Player(name, strategy, maxCard, newHand, newPlayerStats);
+        return newPlayer;        
     }
-    */
 }
