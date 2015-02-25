@@ -58,6 +58,7 @@ public class DealerTest {
         assertEquals(8, table.getPlayers().get(2).getNumCardsInHand());
         assertEquals(8, table.getPlayers().get(3).getNumCardsInHand());
     }
+    */
 
     @Test
     public void testDeal_Basic() {
@@ -66,14 +67,14 @@ public class DealerTest {
         int numPlayers = 4;
 
         // test
-        Map<Integer, List<Integer>> map = dealer.deal(numCards, numPlayers);
+        Stream<Hand> hands = dealer.deal(numCards, numPlayers);
         
-        assertEquals(5, map.keySet().size());
-        assertEquals(8, map.get(0).size());
-        assertEquals(8, map.get(1).size());
-        assertEquals(8, map.get(2).size());
-        assertEquals(8, map.get(3).size());
-        assertEquals(8, map.get(4).size());
+        List<Hand> handList = hands.collect(toList());
+        assertEquals(8, handList.get(0).cardsAsIntStream().count());
+        assertEquals(8, handList.get(1).cardsAsIntStream().count());
+        assertEquals(8, handList.get(2).cardsAsIntStream().count());
+        assertEquals(8, handList.get(3).cardsAsIntStream().count());
+        assertEquals(8, handList.get(4).cardsAsIntStream().count());
     }
 
     @Test(expected=IllegalArgumentException.class)
@@ -83,9 +84,8 @@ public class DealerTest {
         int numPlayers = 4;
 
         // test
-        Map<Integer, List<Integer>> map = dealer.deal(numCards, numPlayers);        
+        dealer.deal(numCards, numPlayers);        
     }
-*/
 
     @Test
     public void testBuildShuffledDeck() {
@@ -93,9 +93,8 @@ public class DealerTest {
         int numCards = 4;
         
         // test
-        IntStream resultStream = dealer.buildShuffledDeck(numCards);
+        List<Integer> result = dealer.buildShuffledDeck(numCards);
         
-        List<Integer> result = resultStream.boxed().collect(toList());
         assertEquals(4, result.size());
         assertTrue(result.contains(1));
         assertTrue(result.contains(2));

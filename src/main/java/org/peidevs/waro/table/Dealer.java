@@ -11,12 +11,17 @@ public class Dealer {
 
     public Table deal(int numCards, List<Player> players) {
         return null;
-        // players = players.stream().map(p -> p.reset(hand))
         /*
         Map<Integer, List<Integer>> map = deal(numCards, players.size());
 
+        List<UnaryOperator<Player>> resetFunctions = 
         final int KITTY_INDEX = 0;
-        List<Integer> kitty = map.get(KITTY_INDEX);
+        Hand kitty = new Hand(map.get(KITTY_INDEX));
+        List<Player> players
+        */
+        // players = players.stream().map(p -> p.reset(hand))
+        /*
+
 
         IntStream.range(0,players.size()).forEach(i -> players.get(i).setHand(map.get(i+1)));
 
@@ -51,30 +56,29 @@ public class Dealer {
     }
     */
     
-    protected Map<Integer, List<Integer>> deal(int numCards, int numPlayers) {
+    protected Stream<Hand> deal(int numCards, int numPlayers) {
         int numGroups = numPlayers + 1; // include kitty 
         assertEvenNumberOfCards(numCards, numGroups);
         
         Map<Integer, List<Integer>> map = buildShuffledDeck(numCards)
+                                            .stream()
+                                            .mapToInt(i->i)
                                             .boxed()
                                             .collect(groupingBy(i -> (i % numGroups)));
                 
-        return map;
+        Stream<Hand> hands = map.keySet()
+                              .stream()
+                              .map(k -> new Hand(map.get(k)));
+        
+        return hands;
     }
     
-    protected IntStream buildShuffledDeck(int numCards) {
-        List<Integer> cards = buildDeck(numCards).collect(toList());
+    protected List<Integer> buildShuffledDeck(int numCards) {
+        List<Integer> cards = IntStream.range(1,numCards+1).boxed().collect(toList());
         Collections.shuffle(cards);
-        IntStream shuffledDeck = cards.stream().mapToInt(i -> i);
-
-        return shuffledDeck;
-    }
-    
-    protected Stream<Integer> buildDeck(int numCards) {
-        Stream<Integer> cards = IntStream.range(1,numCards+1).boxed();
         return cards;
     }
-    
+        
     protected void assertEvenNumberOfCards(int numCards, int numGroups) {
         if ((numCards % numGroups) != 0) {
             throw new IllegalArgumentException("uneven # of cards");
