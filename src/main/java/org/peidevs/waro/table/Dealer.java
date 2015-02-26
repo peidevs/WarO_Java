@@ -26,39 +26,7 @@ public class Dealer {
         table = new Table(newPlayers, kitty);
         
         return table;
-        /*
-        24-FEB.... figure out .andThen()
-        Stream<Hand> hands = deal(numCards, players.size());
-        Stream<UnaryOperator<Player>> resets = hands.map(h -> new Reset(h));
-        Stream<Player> newPlayers = players.stream().map(p -> )
-        */
-        /*
-        Map<Integer, List<Integer>> map = deal(numCards, players.size());
-
-        List<UnaryOperator<Player>> resetFunctions = 
-        final int KITTY_INDEX = 0;
-        Hand kitty = new Hand(map.get(KITTY_INDEX));
-        List<Player> players
-        */
-        // players = players.stream().map(p -> p.reset(hand))
-        /*
-
-
-        IntStream.range(0,players.size()).forEach(i -> players.get(i).setHand(map.get(i+1)));
-
-        Table table = new Table(players, kitty.stream().mapToInt(i->i));
-        return table;
-        */
     }
-    
-    /*
-    public void play(Table table) {
-        List<Player> players = table.getPlayers();
-        IntStream kitty = table.getKitty();
-        kitty.forEach(prizeCard -> playRound(prizeCard, players));
-    }
-    
-    */
     
     // ------- internal 
     

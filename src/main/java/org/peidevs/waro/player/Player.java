@@ -33,7 +33,7 @@ public class Player {
     }
     
     public String toString() {
-        return "name: " + name + " stats: " + playerStats.toString();
+        return "name: " + name + " stats: " + playerStats.toString() + " hand: " + hand.toString();
     }
     
     public String getName() {
