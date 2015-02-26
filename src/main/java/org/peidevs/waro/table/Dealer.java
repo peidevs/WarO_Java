@@ -10,7 +10,27 @@ import org.peidevs.waro.domain.*;
 public class Dealer {
 
     public Table deal(int numCards, List<Player> players) {
-        return null;
+        Table table = null;
+
+        List<Hand> hands = deal(numCards, players.size()).collect(toList());
+        Hand kitty = hands.remove(0);
+        List<Player> newPlayers = new ArrayList<>();
+        
+        for (int i = 0; i < hands.size(); i++) {
+            Player player = players.get(i);
+            Hand hand = hands.get(i);
+            newPlayers.add( player.reset(hand) );
+        }
+        
+        table = new Table(newPlayers, kitty);
+        
+        return table;
+        /*
+        24-FEB.... figure out .andThen()
+        Stream<Hand> hands = deal(numCards, players.size());
+        Stream<UnaryOperator<Player>> resets = hands.map(h -> new Reset(h));
+        Stream<Player> newPlayers = players.stream().map(p -> )
+        */
         /*
         Map<Integer, List<Integer>> map = deal(numCards, players.size());
 
