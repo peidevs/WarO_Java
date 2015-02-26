@@ -1,6 +1,7 @@
 package org.peidevs.waro.domain;
 
 import org.peidevs.waro.table.Hand;
+import org.peidevs.waro.player.Player;
 
 import java.util.List;
 import java.util.stream.IntStream;

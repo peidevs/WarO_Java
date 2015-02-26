@@ -1,4 +1,4 @@
-package org.peidevs.waro.domain;
+package org.peidevs.waro.player;
 
 import java.util.Comparator;
 

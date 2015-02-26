@@ -1,6 +1,7 @@
 package org.peidevs.waro.function;
 
 import org.peidevs.waro.domain.*;
+import org.peidevs.waro.player.*;
 import org.peidevs.waro.strategy.*;
 import org.peidevs.waro.table.*;
 

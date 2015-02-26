@@ -1,4 +1,4 @@
-package org.peidevs.waro.domain;
+package org.peidevs.waro.player;
 
 public class PlayerStats {
     private final int total;
