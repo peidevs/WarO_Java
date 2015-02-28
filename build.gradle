@@ -11,7 +11,12 @@ repositories {
 
 dependencies {
     compile 'com.google.guava:guava:18.0'
+    compile 'org.springframework:spring-context:4.1.5.RELEASE'
+    
     testCompile 'junit:junit:4.11'
+    
+    releaseJars 'org.springframework:spring-beans:4.1.5.RELEASE'
+    releaseJars 'org.springframework:spring-context:4.1.5.RELEASE'
     releaseJars 'com.google.guava:guava:18.0'
 }
 
@@ -30,7 +35,14 @@ task copyReleaseJars(type: Copy, dependsOn: 'init') {
 jar.archiveName 'warO.jar'
 jar.manifest {
     attributes 'Main-Class' : 'org.peidevs.waro.Main' 
-    attributes 'Class-Path' : 'jars/guava-18.0.jar'
+    attributes 'Class-Path' : 'jars/guava-18.0.jar ' +
+                              'jars/spring-beans-4.1.5.RELEASE.jar ' +
+                              'jars/spring-core-4.1.5.RELEASE.jar ' +
+                              'jars/spring-context-4.1.5.RELEASE.jar ' +
+                              'jars/spring-aop-4.1.5.RELEASE.jar ' +
+                              'jars/spring-expression-4.1.5.RELEASE.jar ' +
+                              'jars/commons-logging-1.2.jar ' +
+                              'jars/aopalliance-1.0.jar ' 
 }
 
 task myBuild(dependsOn: ['test', 'copyReleaseJars', 'jar']) << {

@@ -1,28 +1,19 @@
 package org.peidevs.waro;
 
-import org.peidevs.waro.function.*;
-import org.peidevs.waro.player.*;
-import org.peidevs.waro.strategy.*;
+import org.peidevs.waro.function.Tourney;
+import org.peidevs.waro.player.Player;
+import org.peidevs.waro.config.ConfigService;
 
-import java.util.*;
+import java.util.List;
 
 public class Main {
-    // TODO: find a better way to configure players
-    private static List<Player> buildPlayers(int maxCard) {
-        List<Player> players = new ArrayList<>();
-                        
-        players.add(new Player("Beethoven", new NextCard(), maxCard));
-        players.add(new Player("Chopin", new NextCard(), maxCard));
-        players.add(new Player("Mozart", new NextCard(), maxCard));
-        
-        return players;
-    }
     
     public static void main(String... args) {
-        int numCards = 12;
-        int numGames = 3;
-        boolean isVerbose = true;        
-        List<Player> players = buildPlayers(numCards);
+        ConfigService configService = new ConfigService();
+        int numCards = configService.getNumCards();
+        int numGames = configService.getNumGames();
+        boolean isVerbose = configService.isVerbose();        
+        List<Player> players = configService.getPlayers();
         
         Tourney tourney = new Tourney(numCards, numGames, isVerbose);
         List<Player> newPlayers = tourney.apply(players);
