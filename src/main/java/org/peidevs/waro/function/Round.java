@@ -27,13 +27,13 @@ public class Round implements UnaryOperator<List<Player>> {
         
         Bid winningBid = findWinningBid(players, prizeCard);
         
-        Player newWinner = winningBid.getBidder().wins(winningBid);
+        Player newWinner = winningBid.getBidder().winsRound(winningBid);
         nextRoundPlayers.add(newWinner);
         
         String winner = winningBid.getBidder().getName();
         List<Player> newLosers = bids.stream()
                                      .filter(b -> ! b.getBidder().getName().equals(winner))
-                                     .map(b -> b.getBidder().loses(b))
+                                     .map(b -> b.getBidder().losesRound(b))
                                      .collect(toList());
 
         nextRoundPlayers.addAll(newLosers);

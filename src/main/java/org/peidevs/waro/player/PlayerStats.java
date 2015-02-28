@@ -23,7 +23,13 @@ public class PlayerStats {
     
     public int getTotal() { return total; }
     public int getNumRoundsWon() { return numRoundsWon; }
-        
+    public int getNumGamesWon() { return numGamesWon; }
+    
+    public PlayerStats winsGame() {
+        PlayerStats newPlayerStats = new PlayerStats(this.total, this.numGamesWon + 1, this.numRoundsWon);
+        return newPlayerStats;
+    }
+
     public PlayerStats winsRound(int prizeCard) {
         PlayerStats newPlayerStats = new PlayerStats(this.total + prizeCard, this.numGamesWon, this.numRoundsWon + 1);
         return newPlayerStats;

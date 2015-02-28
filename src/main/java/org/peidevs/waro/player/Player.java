@@ -40,14 +40,20 @@ public class Player {
         return name;
     }    
     
-    public Player wins(Bid bid) {
+    public Player winsGame() {
+        PlayerStats newPlayerStats = playerStats.winsGame();
+        Player newPlayer = new Player(name, strategy, maxCard, hand, newPlayerStats);
+        return newPlayer;        
+    }
+    
+    public Player winsRound(Bid bid) {
         Hand newHand = hand.select(bid.getOffer());
         PlayerStats newPlayerStats = playerStats.winsRound(bid.getPrizeCard());
         Player newPlayer = new Player(name, strategy, maxCard, newHand, newPlayerStats);
         return newPlayer;
     }
 
-    public Player loses(Bid bid) {
+    public Player losesRound(Bid bid) {
         Hand newHand = hand.select(bid.getOffer());
         Player newPlayer = new Player(name, strategy, maxCard, newHand, this.playerStats);
         return newPlayer;

@@ -21,7 +21,7 @@ public class PlayerTest {
         Hand hand = new Hand(cards);
         Player player = new Player("Randy", strategy, maxCard, hand);
         Bid bid = player.getBid(prizeCard);
-        player = player.wins(bid);
+        player = player.winsRound(bid);
         assertEquals(3, player.getNumCardsInHand());
         assertEquals(1, player.getPlayerStats().getNumRoundsWon());
         

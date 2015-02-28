@@ -29,11 +29,9 @@ public class Game implements UnaryOperator<List<Player>> {
 
         List<Player> newPlayers = play(kitty, readyPlayers);
 
-        /*
-        determineWinner(table);
-        */
-        
-        return newPlayers;
+        List<Player> newPlayers2 = determineWinner(newPlayers);
+                
+        return newPlayers2;
     }
     
     protected void log(Hand kitty, List<Player> players) {
@@ -61,7 +59,15 @@ public class Game implements UnaryOperator<List<Player>> {
         
     // ---- internal 
     
-    protected void determineWinner(Table table) {
+    protected List<Player> determineWinner(List<Player> players) {
+        PlayerComparator comparator = new PlayerComparator();
+        Player winner = players.stream().max(comparator).get().winsGame();
+        String winnerName = winner.getName();
+        List<Player> newPlayers = players.stream()
+                                         .filter(p->!p.getName().equals(winnerName))
+                                         .collect(toList());
+        newPlayers.add(winner);
+        return newPlayers;
         /*
         def kitty = table.kitty
         def players = table.players
