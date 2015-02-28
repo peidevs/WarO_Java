@@ -28,22 +28,7 @@ public class Dealer {
     }
     
     // ------- internal 
-    
-    /*
-    protected Player playRound(int prizeCard, List<Player> players) {
-        Bid winningBid = findWinningBid(prizeCard, players);
-        Player winner = winningBid.getBidder();
-        return winner;
-    }
-
-    protected Bid findWinningBid(int prizeCard, List<Player> players) {
-        BidComparator comparator = new BidComparator();
-        Bid winningBid = players.stream().map(p -> p.getBid(prizeCard)).max(comparator).get();
         
-        return winningBid;
-    }
-    */
-    
     protected Stream<Hand> deal(int numCards, int numPlayers) {
         int numGroups = numPlayers + 1; // include kitty 
         assertEvenNumberOfCards(numCards, numGroups);
