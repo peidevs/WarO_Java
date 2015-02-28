@@ -39,7 +39,7 @@ public class Game implements UnaryOperator<List<Player>> {
         
     protected List<Player> play(Hand kitty, List<Player> players) {
         List<Player> newPlayers = players;
-        
+
         List<Integer> prizeCards = kitty.cardsAsIntStream().boxed().collect(toList());
         
         for (int prizeCard : prizeCards) {

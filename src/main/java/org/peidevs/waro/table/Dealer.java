@@ -36,17 +36,12 @@ public class Dealer {
         assertEvenNumberOfCards(numCards, numGroups);
         
         List<Integer> deck = buildShuffledDeck(numCards);
-        
-        List<Hand> hands = new ArrayList<>();
-        
-        // TODO: is there a way to partition using Java 8 ?
         int numCardsPerHand = numCards / numGroups;
-        for (List<Integer> cards : Lists.partition(deck, numCardsPerHand)) {
-            Hand hand = new Hand(cards);
-            hands.add(hand);
-        }
+                
+        // TODO: is there a way to partition using Java 8 ?
+        Stream<Hand> hands = Lists.partition(deck, numCardsPerHand).stream().map(cards -> new Hand(cards));
         
-        return hands.stream();
+        return hands;
     }
     
     protected List<Integer> buildShuffledDeck(int numCards) {
