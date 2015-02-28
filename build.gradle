@@ -10,8 +10,9 @@ repositories {
 }
 
 dependencies {
+    compile 'com.google.guava:guava:18.0'
     testCompile 'junit:junit:4.11'
-    releaseJars 'com.google.guava:guava-collections:r03'
+    releaseJars 'com.google.guava:guava:18.0'
 }
 
 task init {
@@ -29,7 +30,7 @@ task copyReleaseJars(type: Copy, dependsOn: 'init') {
 jar.archiveName 'warO.jar'
 jar.manifest {
     attributes 'Main-Class' : 'org.peidevs.waro.Main' 
-    attributes 'Class-Path' : ''
+    attributes 'Class-Path' : 'jars/guava-18.0.jar'
 }
 
 task myBuild(dependsOn: ['test', 'copyReleaseJars', 'jar']) << {

@@ -24,13 +24,10 @@ public class Tourney implements UnaryOperator<List<Player>> {
         
     @Override
     public List<Player> apply(List<Player> players) {
-        List<Player> newPlayers = players;
-        
-        // TODO: this is hideous
-        for (int i = 1; i <= numGames; i++) {
-            newPlayers = new Game(numCards, isVerbose).apply(newPlayers);
-        }
-        
+        UnaryOperator<List<Player>> game = new Game(numCards, isVerbose);
+        Stream<List<Player>> stream = Stream.iterate(players, game).limit(numGames + 1);
+        List<List<Player>> results = stream.collect(toList());
+        List<Player> newPlayers = results.get(results.size() - 1);
         logger.log("END TOURNEY", newPlayers);
                 
         return newPlayers;

@@ -21,8 +21,8 @@ public class Main {
     public static void main(String... args) {
         int numCards = 12;
         int numGames = 3;
+        boolean isVerbose = true;        
         List<Player> players = buildPlayers(numCards);
-        boolean isVerbose = true;
         
         Tourney tourney = new Tourney(numCards, numGames, isVerbose);
         List<Player> newPlayers = tourney.apply(players);

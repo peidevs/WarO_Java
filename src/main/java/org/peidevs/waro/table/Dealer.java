@@ -5,6 +5,8 @@ import java.util.stream.*;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.groupingBy;
 
+import com.google.common.collect.Lists;
+
 import org.peidevs.waro.player.*;
 
 public class Dealer {
@@ -33,22 +35,23 @@ public class Dealer {
         int numGroups = numPlayers + 1; // include kitty 
         assertEvenNumberOfCards(numCards, numGroups);
         
-        Map<Integer, List<Integer>> map = buildShuffledDeck(numCards)
-                                            .stream()
-                                            .mapToInt(i->i)
-                                            .boxed()
-                                            .collect(groupingBy(i -> (i % numGroups)));
-                
-        Stream<Hand> hands = map.keySet()
-                              .stream()
-                              .map(k -> new Hand(map.get(k)));
+        List<Integer> deck = buildShuffledDeck(numCards);
         
-        return hands;
+        List<Hand> hands = new ArrayList<>();
+        
+        // TODO: is there a way to partition using Java 8 ?
+        int numCardsPerHand = numCards / numGroups;
+        for (List<Integer> cards : Lists.partition(deck, numCardsPerHand)) {
+            Hand hand = new Hand(cards);
+            hands.add(hand);
+        }
+        
+        return hands.stream();
     }
     
     protected List<Integer> buildShuffledDeck(int numCards) {
         List<Integer> cards = IntStream.range(1,numCards+1).boxed().collect(toList());
-        Collections.shuffle(cards);
+        Collections.shuffle(cards, new Random(new Date().getTime()));
         return cards;
     }
         
