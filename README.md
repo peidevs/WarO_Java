@@ -14,16 +14,18 @@ download Gradle at http://gradle.org
 
 useful commands:
 
-- gradle clean
-- gradle compileJava
-- gradle test
+- gradle clean test
+- gradle myBuild
 
 See test output in ~build/reports/tests/index.html
+
+See executable zip in ~/staging
 
 Usage:
 ---------
 
-TBD
+cd staging
+java -jar warO.jar 
 
 Rules:
 ---------
@@ -33,9 +35,9 @@ Use a deck of N cards with no suits, just natural numbers from 1 to N.
 Shuffle and deal N cards evenly to X players and a kitty.
 
 For each round:
-	- Reveal a card from the kitty. This is the 'prize card'.
-	- Each player selects a 'bid' from his/her hand.
-	- Bids are revealed: highest bid wins points according to value of the prize card.
+- Reveal a card from the kitty. This is the 'prize card'.
+- Each player selects a 'bid' from his/her hand.
+- Bids are revealed: highest bid wins points according to value of the prize card.
 
 After all rounds, player with most points wins.
 
