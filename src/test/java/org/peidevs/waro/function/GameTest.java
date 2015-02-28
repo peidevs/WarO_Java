@@ -29,7 +29,7 @@ public class GameTest {
         players.add(p3);
                 
         // test
-        List<Player> newPlayers = new Game(numCards).apply(players);
+        List<Player> newPlayers = new Game(numCards, false).apply(players);
         
         assertEquals(3, newPlayers.size());
         assertEquals(0, newPlayers.get(0).getNumCardsInHand());
@@ -68,7 +68,7 @@ public class GameTest {
         Hand kitty = new Hand(Arrays.asList(new Integer[]{10,11,12}));
         
         // test
-        List<Player> newPlayers = new Game(numCards).play(kitty, players);
+        List<Player> newPlayers = new Game(numCards, false).play(kitty, players);
         
         assertEquals(3, newPlayers.size());
         assertEquals(0, newPlayers.get(0).getNumCardsInHand());

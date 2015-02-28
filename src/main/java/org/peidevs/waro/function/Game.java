@@ -10,11 +10,12 @@ import org.peidevs.waro.player.*;
 import org.peidevs.waro.table.*;
 
 public class Game implements UnaryOperator<List<Player>> {    
-    private boolean verbose = true;
+    private final boolean isVerbose;
     private final int numCards;
     
-    public Game(int numCards) {
+    public Game(int numCards, boolean isVerbose) {
         this.numCards = numCards;
+        this.isVerbose = isVerbose;
     }
         
     @Override
@@ -25,19 +26,33 @@ public class Game implements UnaryOperator<List<Player>> {
         Hand kitty = table.getKitty();
         List<Player> readyPlayers = table.getPlayers();
        
-        log(kitty, readyPlayers);
+        log("INIT", kitty, readyPlayers);
 
         List<Player> newPlayers = play(kitty, readyPlayers);
 
         List<Player> newPlayers2 = determineWinner(newPlayers);
+
+        log("FINAL", newPlayers2, 0);
                 
         return newPlayers2;
     }
     
-    protected void log(Hand kitty, List<Player> players) {
-        if (verbose) {
-            System.out.println("-----------------------------------");
+    protected void log(String msg, Hand kitty, List<Player> players) {
+        if (isVerbose) {
+            System.out.println("---------------------------------- " + msg);
             System.out.println("TRACER kitty : " + kitty);
+            for (Player p : players) {
+                System.out.println("TRACER p - " + p);                
+            }
+        }        
+    }
+
+    protected void log(String msg, List<Player> players, int prizeCard) {
+        if (isVerbose) {
+            System.out.println("----------------------------------- " + msg);
+            if (prizeCard != 0) {
+                System.out.println("TRACER prize - " + prizeCard);                                
+            }
             for (Player p : players) {
                 System.out.println("TRACER p - " + p);                
             }
@@ -51,7 +66,7 @@ public class Game implements UnaryOperator<List<Player>> {
         
         for (int prizeCard : prizeCards) {
             newPlayers = new Round(prizeCard).apply(newPlayers);
-            log(kitty, newPlayers);
+            log("ROUND", newPlayers, prizeCard);
         }
         
         return newPlayers;

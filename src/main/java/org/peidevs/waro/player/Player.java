@@ -11,6 +11,14 @@ public class Player {
     private final PlayerStats playerStats;
     private final int maxCard; 
     private final Hand hand;
+
+    public Player(String name, Strategy strategy, int maxCard) {
+        this.name = name;
+        this.strategy = strategy;
+        this.maxCard = maxCard;
+        this.hand = new Hand();
+        this.playerStats = new PlayerStats();
+    }
     
     public Player(String name, Strategy strategy, int maxCard, Hand hand) {
         this.name = name;
