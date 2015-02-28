@@ -19,7 +19,7 @@ public class Main {
     }
     
     public static void main(String... args) {
-        int numCards = 40;
+        int numCards = 12;
         int numGames = 3;
         List<Player> players = buildPlayers(numCards);
         boolean isVerbose = true;

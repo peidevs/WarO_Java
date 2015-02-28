@@ -35,7 +35,8 @@ public class PlayerStats {
         return newPlayerStats;
     }
     
-    public PlayerStats clear() {
-        return new PlayerStats();
+    public PlayerStats reset() {
+        PlayerStats newPlayerStats = new PlayerStats(0, this.numGamesWon, 0);
+        return newPlayerStats;
     }
 }

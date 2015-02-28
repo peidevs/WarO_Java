@@ -81,7 +81,7 @@ public class Player {
     }
 
     public Player reset(Hand newHand) {
-        PlayerStats newPlayerStats = new PlayerStats();
+        PlayerStats newPlayerStats = playerStats.reset();
         Player newPlayer = new Player(name, strategy, maxCard, newHand, newPlayerStats);
         return newPlayer;        
     }
