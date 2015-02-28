@@ -1,4 +1,4 @@
-package org.peidevs.waro.domain;
+package org.peidevs.waro.table;
 
 import org.peidevs.waro.table.Hand;
 import org.peidevs.waro.player.Player;

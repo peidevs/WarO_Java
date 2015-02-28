@@ -5,7 +5,6 @@ import java.util.stream.*;
 import java.util.function.*;
 import static java.util.stream.Collectors.toList;
 
-import org.peidevs.waro.domain.*;
 import org.peidevs.waro.player.*;
 import org.peidevs.waro.table.*;
 

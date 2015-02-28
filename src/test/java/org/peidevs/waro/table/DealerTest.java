@@ -7,7 +7,6 @@ import org.junit.*;
 import java.util.stream.*;
 import static java.util.stream.Collectors.toList;
 
-import org.peidevs.waro.domain.*;
 import org.peidevs.waro.player.*;
 import org.peidevs.waro.strategy.*;
 
