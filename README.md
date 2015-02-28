@@ -4,8 +4,9 @@ WarO_Java
 a Java submission for War-O
 
 - February 2015 
-- this project will be revitalized by using Java 8 streams
+- this project now uses Java 8 streams
 - goals are functional style, immutable objects, minimal for loops
+- Spring's Java configuration is used
 
 To Build:
 ---------
@@ -24,6 +25,8 @@ See executable zip in ~/staging
 To Run:
 ---------
 
+- configure src/main/java/org/peidevs/waro/config/Config.java
+- gradle myBuild
 - cd staging
 - java -jar warO.jar 
 
@@ -31,6 +34,7 @@ Rules:
 ---------
 
 Use a deck of N cards with no suits, just natural numbers from 1 to N.
+(as in Rack-O http://en.wikipedia.org/wiki/Rack-O)
 
 Shuffle and deal N cards evenly to X players and a kitty.
 
