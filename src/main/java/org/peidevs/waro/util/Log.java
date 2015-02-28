@@ -16,9 +16,7 @@ public class Log {
         if (isVerbose) {
             System.out.println("---------------------------------- " + msg);
             System.out.println("TRACER kitty : " + kitty);
-            for (Player p : players) {
-                System.out.println("TRACER p - " + p);                
-            }
+            players.stream().forEach( p -> System.out.println("TRACER p - " + p) );
         }        
     }
     
@@ -32,9 +30,7 @@ public class Log {
             if (prizeCard != 0) {
                 System.out.println("TRACER prize - " + prizeCard);                                
             }
-            for (Player p : players) {
-                System.out.println("TRACER p - " + p);                
-            }
+            players.stream().forEach( p -> System.out.println("TRACER p - " + p) );
         }        
     }
     
