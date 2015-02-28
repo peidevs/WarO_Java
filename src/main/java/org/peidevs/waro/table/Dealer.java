@@ -3,7 +3,6 @@ package org.peidevs.waro.table;
 import java.util.*;
 import java.util.stream.*;
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.groupingBy;
 
 import com.google.common.collect.Lists;
 
