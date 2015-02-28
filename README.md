@@ -21,7 +21,7 @@ See test output in ~build/reports/tests/index.html
 
 See executable zip in ~/staging
 
-Usage:
+To Run:
 ---------
 
 - cd staging
