@@ -5,7 +5,7 @@ a Java submission for War-O
 
 - February 2015 
 - this project will be revitalized by using Java 8 streams
-- a goal is to minimize collections and for loops (and preferring streams)
+- goals are functional style, immutable objects, minimal for loops
 
 To Build:
 ---------
@@ -24,8 +24,8 @@ See executable zip in ~/staging
 Usage:
 ---------
 
-cd staging
-java -jar warO.jar 
+- cd staging
+- java -jar warO.jar 
 
 Rules:
 ---------
