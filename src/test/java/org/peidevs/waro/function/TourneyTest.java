@@ -35,13 +35,6 @@ public class TourneyTest {
         assertEquals(0, newPlayers.get(0).getNumCardsInHand());
         assertEquals(0, newPlayers.get(1).getNumCardsInHand());
         assertEquals(0, newPlayers.get(2).getNumCardsInHand());
-        /*
-        assertEquals(1, newPlayers.stream().filter(p -> p.getPlayerStats().getNumGamesWon() == 1).count());
-        assertEquals(2, newPlayers.stream().filter(p -> p.getPlayerStats().getNumGamesWon() == 0).count());
-        assertEquals(3, newPlayers.stream().filter(p -> p.getPlayerStats().getNumRoundsWon() == 1).count());
-        assertEquals(1, newPlayers.stream().filter(p -> p.getPlayerStats().getTotal() == 10).count());
-        assertEquals(1, newPlayers.stream().filter(p -> p.getPlayerStats().getTotal() == 11).count());
-        assertEquals(1, newPlayers.stream().filter(p -> p.getPlayerStats().getTotal() == 12).count());
-        */
+        assertEquals(3, newPlayers.stream().map(p -> p.getPlayerStats().getNumGamesWon()).mapToInt(i->i).sum());
     }
 }

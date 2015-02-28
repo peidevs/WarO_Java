@@ -36,12 +36,9 @@ public class GameTest {
         assertEquals(0, newPlayers.get(2).getNumCardsInHand());
         assertEquals(1, newPlayers.stream().filter(p -> p.getPlayerStats().getNumGamesWon() == 1).count());
         assertEquals(2, newPlayers.stream().filter(p -> p.getPlayerStats().getNumGamesWon() == 0).count());
-        /*
-        assertEquals(3, newPlayers.stream().filter(p -> p.getPlayerStats().getNumRoundsWon() == 1).count());
-        assertEquals(1, newPlayers.stream().filter(p -> p.getPlayerStats().getTotal() == 10).count());
-        assertEquals(1, newPlayers.stream().filter(p -> p.getPlayerStats().getTotal() == 11).count());
-        assertEquals(1, newPlayers.stream().filter(p -> p.getPlayerStats().getTotal() == 12).count());
-        */
+        int maxTotal = maxCard + (maxCard - 1) + (maxCard - 2);
+        assertEquals(3, newPlayers.stream().filter(p -> p.getPlayerStats().getTotal() <= maxTotal).count());
+        assertEquals(3, newPlayers.stream().map(p -> p.getPlayerStats().getNumRoundsWon()).mapToInt(i->i).sum());                
     }
 
     @Test
