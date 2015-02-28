@@ -53,7 +53,7 @@ public class Game implements UnaryOperator<List<Player>> {
     // ---- internal 
     
     protected List<Player> determineWinner(List<Player> players) {
-        PlayerComparator comparator = new PlayerComparator();
+        PlayerComparator comparator = new PlayerComparator(PlayerStats::getTotal);
         Player winner = players.stream().max(comparator).get().winsGame();
         String winnerName = winner.getName();
         List<Player> newPlayers = players.stream()
