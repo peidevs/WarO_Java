@@ -42,6 +42,7 @@ public class Game implements UnaryOperator<List<Player>> {
 
         List<Integer> prizeCards = kitty.cardsAsIntStream().boxed().collect(toList());
         
+        // TODO: find a better way, possibly 'zip' function?
         for (int prizeCard : prizeCards) {
             newPlayers = new Round(prizeCard).apply(newPlayers);
             logger.log("ROUND", newPlayers, prizeCard);
