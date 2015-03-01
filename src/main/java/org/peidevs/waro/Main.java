@@ -2,7 +2,6 @@ package org.peidevs.waro;
 
 import org.peidevs.waro.function.Tourney;
 import org.peidevs.waro.player.Player;
-import org.peidevs.waro.player.PlayerComparator;
 import org.peidevs.waro.player.PlayerStats;
 import org.peidevs.waro.config.ConfigService;
 
@@ -24,15 +23,10 @@ public class Main {
         
         // play the games
         Tourney tourney = new Tourney(numCards, numGames, isVerbose);
-        List<Player> newPlayers = tourney.apply(players);
-
-        // report results
-        System.out.println("------------------");
-        System.out.println("RESULTS : ");
         
-        // PlayerComparator comparator = new PlayerComparator(PlayerStats::getNumGamesWon);
-        newPlayers.stream()
-                  .sorted(comparing(Player::getNumGamesWon).reversed())
-                  .forEach(p -> System.out.println(p.toString(numGames)));        
+        tourney.apply(players)
+               .stream()
+               .sorted(comparing(Player::getNumGamesWon).reversed())
+               .forEach(p -> System.out.println(p.toString(numGames)));        
     }
 }

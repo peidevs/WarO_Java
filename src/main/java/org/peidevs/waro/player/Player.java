@@ -49,7 +49,7 @@ public class Player {
     }
     
     public int getNumGamesWon() { return playerStats.getNumGamesWon(); }
-    
+    public int getTotal() { return playerStats.getTotal(); }
     public String getName() { return name; }    
     
     public Player winsGame() {

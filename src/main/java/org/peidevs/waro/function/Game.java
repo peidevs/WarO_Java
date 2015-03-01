@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.*;
 import java.util.function.*;
 import static java.util.stream.Collectors.toList;
+import static java.util.Comparator.comparing;
 
 import org.peidevs.waro.player.*;
 import org.peidevs.waro.table.*;
@@ -54,8 +55,11 @@ public class Game implements UnaryOperator<List<Player>> {
     // ---- internal 
     
     protected List<Player> determineWinner(List<Player> players) {
-        PlayerComparator comparator = new PlayerComparator(PlayerStats::getTotal);
-        Player winner = players.stream().max(comparator).get().winsGame();
+        Player winner = players.stream()
+                               .max( comparing(Player::getTotal).reversed() )
+                               .get()
+                               .winsGame();
+                               
         String winnerName = winner.getName();
         List<Player> newPlayers = players.stream()
                                          .filter(p->!p.getName().equals(winnerName))
