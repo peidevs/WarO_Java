@@ -7,6 +7,7 @@ import org.peidevs.waro.player.PlayerStats;
 import org.peidevs.waro.config.ConfigService;
 
 import java.util.List;
+import static java.util.Comparator.comparing;
 
 // To configure players, numGames, etc, see org.peidevs.waro.config.Config
 // This is compile-time configuration
@@ -25,13 +26,13 @@ public class Main {
         Tourney tourney = new Tourney(numCards, numGames, isVerbose);
         List<Player> newPlayers = tourney.apply(players);
 
-        // find the winner
-        PlayerComparator comparator = new PlayerComparator(PlayerStats::getNumGamesWon);
-        Player winner = newPlayers.stream().max(comparator).get();
-        
-        // report the winner 
-        // TODO: report on tie games
+        // report results
         System.out.println("------------------");
-        System.out.println("WINNER : " + winner.getName());
+        System.out.println("RESULTS : ");
+        
+        // PlayerComparator comparator = new PlayerComparator(PlayerStats::getNumGamesWon);
+        newPlayers.stream()
+                  .sorted(comparing(Player::getNumGamesWon).reversed())
+                  .forEach(p -> System.out.println(p.toString(numGames)));        
     }
 }

@@ -44,9 +44,13 @@ public class Player {
         return "name: " + name + " stats: " + playerStats.toString() + " hand: " + hand.toString();
     }
     
-    public String getName() {
-        return name;
-    }    
+    public String toString(int numGames) {
+        return "name: " + name + " won: " + playerStats.getNumGamesWon() + " of " + numGames + " games";        
+    }
+    
+    public int getNumGamesWon() { return playerStats.getNumGamesWon(); }
+    
+    public String getName() { return name; }    
     
     public Player winsGame() {
         PlayerStats newPlayerStats = playerStats.winsGame();

@@ -14,8 +14,8 @@ public class Config {
     // configure these as desired
     private static final int NUM_CARDS = 12;
     private static final int MAX_CARD = NUM_CARDS;
-    private static final int NUM_GAMES = 3;
-    private static final boolean IS_VERBOSE = true;
+    private static final int NUM_GAMES = 50;
+    private static final boolean IS_VERBOSE = false;
         
     @Bean
     public List<Player> players() {
@@ -23,9 +23,9 @@ public class Config {
                         
         // -----------------------------------                
         // configure players as desired
-        players.add(new Player("Beethoven", new NextCard(), MAX_CARD));
+        players.add(new Player("Beethoven", new MinCard(), MAX_CARD));
         players.add(new Player("Chopin", new NextCard(), MAX_CARD));
-        players.add(new Player("Mozart", new NextCard(), MAX_CARD));
+        players.add(new Player("Mozart", new MaxCard(), MAX_CARD));
         
         return players;
     }
