@@ -25,7 +25,7 @@ public class Round implements UnaryOperator<List<Player>> {
         
         List<Bid> bids = getAllBids(players, prizeCard);
         
-        Bid winningBid = findWinningBid(players, prizeCard);
+        Bid winningBid = findWinningBid(bids);
         
         Player newWinner = winningBid.getBidder().winsRound(winningBid);
         nextRoundPlayers.add(newWinner);
@@ -46,9 +46,9 @@ public class Round implements UnaryOperator<List<Player>> {
         return players.stream().map(p -> p.getBid(prizeCard)).collect(toList());
     }
     
-    protected Bid findWinningBid(List<Player> players, int prizeCard) {
+    protected Bid findWinningBid(List<Bid> bids) {
         BidComparator comparator = new BidComparator();
-        Bid winningBid = players.stream().map(p -> p.getBid(prizeCard)).max(comparator).get();
+        Bid winningBid = bids.stream().max(comparator).get();
         return winningBid;
     }
 }
