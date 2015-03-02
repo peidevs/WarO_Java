@@ -9,7 +9,7 @@ import java.util.function.*;
 import static java.util.stream.Collectors.toList;
 import static java.util.Comparator.comparing;
 
-public class Round implements UnaryOperator<List<Player>> {
+public class Round implements UnaryOperator<Stream<Player>> {
     private final int prizeCard;
     
     public Round(int prizeCard) {
@@ -21,30 +21,27 @@ public class Round implements UnaryOperator<List<Player>> {
     }
     
     @Override
-    public List<Player> apply(List<Player> players) {
-        List<Player> nextRoundPlayers = new ArrayList<>();
-        
+    public Stream<Player> apply(Stream<Player> players) {
         List<Bid> bids = getAllBids(players, prizeCard);
         
         Bid winningBid = findWinningBid(bids);
         
         Player newWinner = winningBid.getBidder().winsRound(winningBid);
-        nextRoundPlayers.add(newWinner);
         
         String winner = winningBid.getBidder().getName();
-        List<Player> newLosers = bids.stream()
-                                     .filter(b -> ! b.getBidder().getName().equals(winner))
-                                     .map(b -> b.getBidder().losesRound(b))
-                                     .collect(toList());
+        
+        Stream<Player> result = Stream.concat( Stream.of(newWinner),
+                                               bids.stream()
+                                                   .filter(b -> ! b.getBidder().getName().equals(winner))
+                                                   .map(b -> b.getBidder().losesRound(b)));
 
-        nextRoundPlayers.addAll(newLosers);
-        return nextRoundPlayers;
+        return result;
     }
     
     // --------- internal 
     
-    protected List<Bid> getAllBids(List<Player> players, int prizeCard) {
-        return players.stream().map(p -> p.getBid(prizeCard)).collect(toList());
+    protected List<Bid> getAllBids(Stream<Player> players, int prizeCard) {
+        return players.map(p -> p.getBid(prizeCard)).collect(toList());
     }
     
     protected Bid findWinningBid(List<Bid> bids) {

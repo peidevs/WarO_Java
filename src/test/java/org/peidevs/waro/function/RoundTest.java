@@ -36,7 +36,7 @@ public class RoundTest {
         int prizeCard = 10;
         
         // test
-        List<Player> newPlayers = new Round(prizeCard).apply(players);
+        List<Player> newPlayers = new Round(prizeCard).apply(players.stream()).collect(toList());
         
         assertEquals(3, newPlayers.size());
         assertEquals(2, newPlayers.get(0).getNumCardsInHand());
@@ -70,7 +70,7 @@ public class RoundTest {
         players.add(p3);
         
         // test
-        List<Bid> result = round.getAllBids(players, 10);
+        List<Bid> result = round.getAllBids(players.stream(), 10);
         
         assertEquals(3, result.size());
     }

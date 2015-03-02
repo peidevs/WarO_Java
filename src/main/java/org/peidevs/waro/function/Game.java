@@ -45,7 +45,7 @@ public class Game implements UnaryOperator<List<Player>> {
         
         // TODO: find a better way, possibly 'zip' function?
         for (int prizeCard : prizeCards) {
-            newPlayers = new Round(prizeCard).apply(newPlayers);
+            newPlayers = new Round(prizeCard).apply(newPlayers.stream()).collect(toList());
             logger.log("ROUND", newPlayers, prizeCard);
         }
         
