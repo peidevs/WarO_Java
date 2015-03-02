@@ -7,6 +7,7 @@ import java.util.*;
 import java.util.stream.*;
 import java.util.function.*;
 import static java.util.stream.Collectors.toList;
+import static java.util.Comparator.comparing;
 
 public class Round implements UnaryOperator<List<Player>> {
     private final int prizeCard;
@@ -47,8 +48,7 @@ public class Round implements UnaryOperator<List<Player>> {
     }
     
     protected Bid findWinningBid(List<Bid> bids) {
-        BidComparator comparator = new BidComparator();
-        Bid winningBid = bids.stream().max(comparator).get();
+        Bid winningBid = bids.stream().max( comparing(Bid::getOffer) ).get();
         return winningBid;
     }
 }
