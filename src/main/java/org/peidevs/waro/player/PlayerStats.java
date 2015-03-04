@@ -6,9 +6,7 @@ public class PlayerStats {
     private final int numRoundsWon;
     
     public PlayerStats() {
-        this.total = 0;
-        this.numGamesWon = 0;
-        this.numRoundsWon = 0;
+        this(0,0,0);
     }
     
     private PlayerStats(int total, int numGamesWon, int numRoundsWon) {
@@ -22,7 +20,9 @@ public class PlayerStats {
     }
     
     public int getTotal() { return total; }
+
     public int getNumRoundsWon() { return numRoundsWon; }
+
     public int getNumGamesWon() { return numGamesWon; }
     
     public PlayerStats winsGame() {

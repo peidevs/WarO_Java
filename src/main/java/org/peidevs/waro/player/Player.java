@@ -13,19 +13,11 @@ public class Player {
     private final Hand hand;
 
     public Player(String name, Strategy strategy, int maxCard) {
-        this.name = name;
-        this.strategy = strategy;
-        this.maxCard = maxCard;
-        this.hand = new Hand();
-        this.playerStats = new PlayerStats();
+        this(name, strategy, maxCard, new Hand(), new PlayerStats());
     }
     
     public Player(String name, Strategy strategy, int maxCard, Hand hand) {
-        this.name = name;
-        this.strategy = strategy;
-        this.maxCard = maxCard;
-        this.hand = hand;
-        this.playerStats = new PlayerStats();
+        this(name, strategy, maxCard, hand, new PlayerStats());
     }
 
     private Player(String name, Strategy strategy, int maxCard, Hand hand, PlayerStats playerStats) {
@@ -49,7 +41,9 @@ public class Player {
     }
     
     public int getNumGamesWon() { return playerStats.getNumGamesWon(); }
+
     public int getTotal() { return playerStats.getTotal(); }
+
     public String getName() { return name; }    
     
     public Player winsGame() {
