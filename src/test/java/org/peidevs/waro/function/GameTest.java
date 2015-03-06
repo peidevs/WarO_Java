@@ -42,7 +42,7 @@ public class GameTest {
     }
 
     @Test
-    public void testPLay_Basic() {
+    public void testPlay_Basic() {
         int numCards = 12;
         int maxCard = numCards;
         Strategy strategy = new NextCard();
@@ -64,7 +64,7 @@ public class GameTest {
         Hand kitty = new Hand(Arrays.asList(new Integer[]{10,11,12}));
         
         // test
-        List<Player> newPlayers = new Game(numCards, false).play(kitty, players);
+        List<Player> newPlayers = new Game(numCards, false).play(kitty, players.stream()).collect(toList());
         
         assertEquals(3, newPlayers.size());
         assertEquals(0, newPlayers.get(0).getNumCardsInHand());

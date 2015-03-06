@@ -29,25 +29,23 @@ public class Game implements UnaryOperator<List<Player>> {
        
         logger.log("INIT", kitty, readyPlayers);
 
-        List<Player> newPlayers = play(kitty, readyPlayers);
+        Stream<Player> newPlayers = play(kitty, readyPlayers.stream());
 
-        List<Player> newPlayers2 = determineWinner(newPlayers);
+        List<Player> newPlayers2 = determineWinner(newPlayers.collect(toList()));
 
         logger.log("FINAL", newPlayers2);
                 
         return newPlayers2;
     }
         
-    protected List<Player> play(Hand kitty, List<Player> players) {
-        Stack<List<Player>> results = new Stack<>();
+    protected Stream<Player> play(Hand kitty, Stream<Player> players) {
+        Stack<Stream<Player>> results = new Stack<>();
         results.push(players);
         
         kitty.cardsAsIntStream()
              .boxed()
-             .forEach( prizeCard -> { Round round = new Round(prizeCard);
-                                      Stream<Player> lastPlayers = results.pop().stream();
-                                      Stream<Player> newPlayers = round.apply(lastPlayers);
-                                      results.push(newPlayers.collect(toList())); 
+             .forEach( prizeCard -> { Stream<Player> lastPlayers = results.pop();
+                                      results.push(new Round(prizeCard).apply(lastPlayers)); 
                                     });
         
         return results.pop();
