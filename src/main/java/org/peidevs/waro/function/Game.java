@@ -44,9 +44,8 @@ public class Game implements UnaryOperator<List<Player>> {
         
         kitty.cardsAsIntStream()
              .boxed()
-             .forEach( prizeCard -> { Stream<Player> lastPlayers = results.pop();
-                                      results.push(new Round(prizeCard).apply(lastPlayers)); 
-                                    });
+             .map(prizeCard -> new Round(prizeCard))
+             .forEach(round -> results.push(round.apply(results.pop())));
         
         return results.pop();
     }
