@@ -1,6 +1,6 @@
 package org.peidevs.waro.function;
 
-import java.util.List;
+import java.util.*;
 import java.util.stream.*;
 import java.util.function.*;
 import static java.util.stream.Collectors.toList;
@@ -39,17 +39,18 @@ public class Game implements UnaryOperator<List<Player>> {
     }
         
     protected List<Player> play(Hand kitty, List<Player> players) {
-        List<Player> newPlayers = players;
-
-        List<Integer> prizeCards = kitty.cardsAsIntStream().boxed().collect(toList());
+        Stack<List<Player>> results = new Stack<>();
+        results.push(players);
         
-        // TODO: find a better way, possibly 'zip' function?
-        for (int prizeCard : prizeCards) {
-            newPlayers = new Round(prizeCard).apply(newPlayers.stream()).collect(toList());
-            logger.log("ROUND", newPlayers, prizeCard);
-        }
+        kitty.cardsAsIntStream()
+             .boxed()
+             .forEach( prizeCard -> { Round round = new Round(prizeCard);
+                                      Stream<Player> lastPlayers = results.pop().stream();
+                                      Stream<Player> newPlayers = round.apply(lastPlayers);
+                                      results.push(newPlayers.collect(toList())); 
+                                    });
         
-        return newPlayers;
+        return results.pop();
     }
         
     // ---- internal 
