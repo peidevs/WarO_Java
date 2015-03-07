@@ -5,8 +5,8 @@ a Java submission for War-O
 
 - February 2015 
 - this project now uses Java 8 streams
-- goals are functional style, immutable objects, minimal for loops
-- Spring's Java configuration is used
+- goals include: a functional style, immutable objects, minimal use of for-loops
+- Spring's Java configuration is used to configure players
 
 To Build:
 ---------
