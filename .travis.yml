@@ -6,8 +6,6 @@ jdk:
 notifications:
     email: false
 
-install: ./gradlew -version
-
 script:
-  - ./gradlew -version
-  - ./gradlew clean check 
+  - gradle -version
+  - gradle clean check 
