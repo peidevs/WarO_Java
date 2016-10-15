@@ -17,10 +17,6 @@ dependencies {
     testCompile 'junit:junit:4.11'
 }
 
-run {
-    args "config.groovy"
-}
-
 installDist.doFirst {
     ant.delete(dir: project.stagingDir)
 }
