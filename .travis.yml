@@ -17,9 +17,8 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 
-install: ./gradlew -version
+install: gradlew -version
 
 script:
-  - java -version
-  - ./gradlew -version
-  - ./gradlew --refresh-dependencies clean check -Dscan
+  - gradlew -version
+  - gradlew --refresh-dependencies clean check 
