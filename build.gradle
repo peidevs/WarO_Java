@@ -1,11 +1,8 @@
 
-// build tickle
-
 apply plugin: 'java'
+apply plugin: 'application'
 
-configurations {
-    releaseJars
-}
+mainClassName = 'org.peidevs.waro.Main'
 
 repositories {
     mavenCentral()
@@ -16,48 +13,16 @@ dependencies {
     compile 'org.springframework:spring-context:4.1.5.RELEASE'
     
     testCompile 'junit:junit:4.11'
-    
-    releaseJars 'org.springframework:spring-beans:4.1.5.RELEASE'
-    releaseJars 'org.springframework:spring-context:4.1.5.RELEASE'
-    releaseJars 'com.google.guava:guava:18.0'
 }
 
-task init {
-    delete "${buildDir}/jars"
-    mkdir "${buildDir}/jars"
-    delete stagingDir
-    mkdir stagingDir
+run {
+    args "config.groovy"
 }
 
-task copyReleaseJars(type: Copy, dependsOn: 'init') {
-    into "${buildDir}/jars"
-    from configurations.releaseJars
+installDist.doFirst {
+    ant.delete(dir: project.stagingDir)
 }
 
-jar.archiveName 'warO.jar'
-jar.manifest {
-    attributes 'Main-Class' : 'org.peidevs.waro.Main' 
-    attributes 'Class-Path' : 'jars/guava-18.0.jar ' +
-                              'jars/spring-beans-4.1.5.RELEASE.jar ' +
-                              'jars/spring-core-4.1.5.RELEASE.jar ' +
-                              'jars/spring-context-4.1.5.RELEASE.jar ' +
-                              'jars/spring-aop-4.1.5.RELEASE.jar ' +
-                              'jars/spring-expression-4.1.5.RELEASE.jar ' +
-                              'jars/commons-logging-1.2.jar ' +
-                              'jars/aopalliance-1.0.jar ' 
-}
-
-task myBuild(dependsOn: ['test', 'copyReleaseJars', 'jar']) << {
-    ant.zip(destfile: "${buildDir}/warO.zip") {
-        zipfileset(dir: "${buildDir}/jars", prefix: "jars")
-        zipfileset(file: "${buildDir}/libs/warO.jar")
-    }
-
-    ant.unzip(src: "${buildDir}/warO.zip", dest: project.stagingDir)
-}
-
-task run(dependsOn: 'myBuild') {
-    def cmd = "cd ${project.stagingDir} ; " +
-              "java -jar warO.jar "
-    cmd.execute()
+installDist {
+    into project.stagingDir
 }

@@ -18,19 +18,18 @@ download Gradle at http://gradle.org
 useful commands:
 
 - gradle clean test
-- gradle myBuild
+- gradle run
+- gradle build
 
 See test output in ~build/reports/tests/index.html
 
-See executable zip in ~/staging
+See executable zip in ~/build/distributions
 
 To Run:
 ---------
 
 - configure src/main/java/org/peidevs/waro/config/Config.java
-- gradle myBuild
-- cd staging
-- java -jar warO.jar 
+- gradle run
 
 Rules:
 ---------
