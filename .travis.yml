@@ -18,10 +18,10 @@ cache:
     - $HOME/.gradle/wrapper/
 
 before_install: 
-    - chmod +x gradlew
+    - chmod +x ./gradlew
 
-install: gradlew -version
+install: ./gradlew -version
 
 script:
-  - gradlew -version
-  - gradlew --refresh-dependencies clean check 
+  - ./gradlew -version
+  - ./gradlew --refresh-dependencies clean check 
