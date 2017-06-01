@@ -3,7 +3,7 @@
 WarO_Java
 =========
 
-a Java submission for War-O
+a Java submission for War-O as a [code kata](https://en.wikipedia.org/wiki/Kata_(programming))
 
 - February 2015 
 - this project now uses Java 8 streams
