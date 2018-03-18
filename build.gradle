@@ -1,6 +1,4 @@
 
-// build tickle 15-OCT-2016
-
 apply plugin: 'java'
 apply plugin: 'application'
 
@@ -23,4 +21,8 @@ installDist.doFirst {
 
 installDist {
     into project.stagingDir
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.5.1'
 }
