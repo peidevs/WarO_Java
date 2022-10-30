@@ -4,6 +4,7 @@ import org.peidevs.waro.player.*;
 import org.peidevs.waro.strategy.*;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.*;
@@ -18,6 +19,7 @@ public class Config {
     private static final boolean IS_VERBOSE = false;
         
     @Bean
+    @Lazy
     public List<Player> players() {
         List<Player> players = new ArrayList<>();
                         
