@@ -8,6 +8,7 @@ a Java submission for War-O as a [code kata](https://en.wikipedia.org/wiki/Kata_
 - this project now uses Java 8 streams
 - goals include: a functional style, immutable objects, minimal use of for-loops
 - Spring's Java configuration is used to configure players
+- update 2022: Java 8 [is ancient](https://howoldisjava8.today/en/)
 
 To Build:
 ---------
