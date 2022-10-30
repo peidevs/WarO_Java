@@ -13,13 +13,11 @@ a Java submission for War-O as a [code kata](https://en.wikipedia.org/wiki/Kata_
 To Build:
 ---------
 
-download Gradle at http://gradle.org
-
 useful commands:
 
-- gradle clean test
-- gradle run
-- gradle build
+- ./gradlew clean test
+- ./gradlew run
+- ./gradlew build
 
 See test output in ~build/reports/tests/index.html
 
@@ -29,7 +27,7 @@ To Run:
 ---------
 
 - configure src/main/java/org/peidevs/waro/config/Config.java
-- gradle run
+- ./gradlew run
 
 Rules:
 ---------
