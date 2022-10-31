@@ -23,12 +23,6 @@ installDist {
     into project.stagingDir
 }
 
-/*
-task wrapper(type: Wrapper) {
-    gradleVersion = '3.5.1'
-}
-*/
-
 test {
     testLogging {
         events "passed", "failed"
